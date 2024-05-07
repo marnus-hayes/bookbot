@@ -10,10 +10,18 @@ def main():
     print("-----------------------------------------------------------------------")
     print(f"report for book {filepath}:")
     print()
+    print("------------ START OF REPORT ------------")
     print(f"{word_count} words found in book!")
     print()
     print("Here are the amount of times different letters appeared in the book:")
     print("Sort order: descending")
+    print()
+
+    for d in letter_count_list:
+        print(f"The letter '{d['name']}' appears {d['num']} times!")
+
+    print()
+    print("------------- END OF REPORT -------------")
 
 
 def get_book_text(filepath):
@@ -52,10 +60,13 @@ def convert_dict_to_list_of_dict(dictionary):
                 }
             )
 
+    count_list.sort(reverse=True, key=sort_chars_on)
+
     return count_list
 
 
-def sort_chars_on(dict):
-    pass
+def sort_chars_on(d):
+    return(d["num"])
+
 
 main()
