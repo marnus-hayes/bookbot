@@ -3,19 +3,28 @@ def main():
 
     file_contents = get_book_text(filepath)
     word_count = count_words(file_contents)
-    letter_count = count_letters(file_contents)
+    letter_count_dict = count_letters(file_contents)
+    letter_count_list = convert_dict_to_list_of_dict(letter_count_dict)
 
+    print("welcome to bookbot!")
+    print("-----------------------------------------------------------------------")
+    print(f"report for book {filepath}:")
+    print()
     print(f"{word_count} words found in book!")
+    print()
     print("Here are the amount of times different letters appeared in the book:")
-    print(letter_count)
+    print("Sort order: descending")
+
 
 def get_book_text(filepath):
     with open(filepath) as f:
         return f.read()
 
+
 def count_words(text):
     word_list = text.split()
     return len(word_list)
+
 
 def count_letters(text):
     alphabet = list("abcdefghijklmnopqrstuvwxyz")
@@ -32,5 +41,21 @@ def count_letters(text):
     return counts
 
 
+def convert_dict_to_list_of_dict(dictionary):
+    count_list = []
+
+    for key in dictionary.keys():
+        count_list.append(
+                {
+                    "name": key,
+                    "num": dictionary[key]
+                }
+            )
+
+    return count_list
+
+
+def sort_chars_on(dict):
+    pass
 
 main()
